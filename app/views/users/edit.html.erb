@@ -1,0 +1,26 @@
+
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+    <h2>User info</h2>
+    <% if@user.errors.any? %>
+      <%=@user.errors.count %>件のエラーが発生しました。
+      <% @user.errors.full_messages.each do |message| %>
+        <%=message %>
+      <% end %>
+    <% end %>
+    <%= form_with model:@user, local:true do |f| %>
+      <p>Name</p>
+      <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+      <p>image</p>
+
+      <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+      <p>Introduction</p>
+      <%=f.text_area :introduction %>
+      <div>
+      <%=f.submit "Update User",class:"btn btn-secondary" %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

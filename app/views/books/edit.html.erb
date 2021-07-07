@@ -1,0 +1,24 @@
+
+<div class=container>
+  <div class="row">
+    <div class="mx-auto">
+    <h1>Editing Book</h1>
+    <% if@book.errors.any? %>
+      <%=@book.errors.count %>件のerrorが発生しました
+      <% @book.errors.full_messages.each do |message| %>
+        <%=message %>
+      <% end %>
+    <% end %>
+    <%= form_with model:@book, local:true do |f| %>
+      <p>Title</p>
+      <%= f.text_field :title, autofocus: true %>
+      <p>Opinion</p>
+      <%= f.text_area :body, autofocus: true %>
+      <div>
+      <%= f.submit "Update Book",class: "btn btn-sm btn-success"  %>
+      </div>
+    <% end %>
+    <p><%=link_to "Show", book_path %><span>|</span><%=link_to "Back", books_path %>
+    </div>
+  </div>
+</div>
